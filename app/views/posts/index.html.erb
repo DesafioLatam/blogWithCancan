@@ -1,12 +1,13 @@
 <div class="col-md-9">
-  <div class="well">
-      <% @posts.each do |post| %>
+  <%= render 'form'%>
+
+  <% @posts.each do |post| %>
+    <div class="well">
           <h1> <%= post.title %> </h1>
           <%= post.content %>
           <%= link_to 'Show', post %>
           <%= link_to 'Edit', edit_post_path(post) %>
           <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
-  <%= link_to 'New Post', new_post_path %>
