@@ -4,6 +4,7 @@
   <% @posts.each do |post| %>
     <div class="well">
           <h1> <%= post.title %> </h1>
+
           <%= post.content %>
           <%= link_to 'Show', post %>
           <%= link_to 'Edit', edit_post_path(post) %>
@@ -13,7 +14,7 @@
             <hr>
             <%= c.content %>
           <% end %>
-          
+
     </div>
   <% end %>
 </div>

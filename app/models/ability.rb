@@ -8,11 +8,17 @@ class Ability
     if user.role == "admin"
         can :manage, :all
     elsif user.role == "moderator"
+        can :read, Post
         can :delete, Post
         can :delete, Comment
+    elsif user.role == "user"
+        can :read, Post
+        can :delete, Post, user_id: user_id
+        can :delete, Post, user_id: user_id
     else
         can :read, Post
     end
+    
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
