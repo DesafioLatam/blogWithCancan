@@ -9,13 +9,12 @@ class Ability
         can :manage, :all
     elsif user.role == "moderator"
         can :read, Post
+        can :create, [Post, Comment]
         can :destroy, [Post, Comment]
     elsif user.role == "user"
         can :read, Post
         can :create, [Post, Comment]
         can [:update, :destroy], [Post, Comment], user_id: user.id
-    else
-        can :read, Post
     end
     
     #
