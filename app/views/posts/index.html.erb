@@ -9,12 +9,12 @@
 
   <% @posts.each do |post| %>
     <div class="well">
-          <h1> <%= post.title %> </h1>
+          <h1> <%= post.title %> <small> <%= current_user.email %> </small></h1>
 
           <%= post.content %>
           <%= link_to 'Show', post %>
-          <%= link_to 'Edit', edit_post_path(post) %>
-          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit', edit_post_path(post) if can? :update, post %>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, post %>
           <%= render :partial => 'comments/form', object: post.comments.build, as: :comment %>
           <% post.comments.each do |c| %>
             <hr>
